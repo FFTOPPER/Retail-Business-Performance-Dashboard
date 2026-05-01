@@ -270,6 +270,14 @@ Key features:
 
 ---
 
+## Dataset
+
+Customer Shopping Dataset — Retail transaction data containing multi-category sales information including product categories, customer demographics (gender), pricing, quantity, payment methods, and transaction timestamps.
+
+Source: Kaggle (Customer Shopping Dataset)
+
+---
+
 ## Author
 
 Adheje B
