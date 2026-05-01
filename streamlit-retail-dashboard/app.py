@@ -34,14 +34,27 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------- DATA ----------
+import os
+
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/customer_shopping_data.csv")
+    base_path = os.path.dirname(__file__)
+    file_path = os.path.join(base_path, "data", "customer_shopping_data.csv")
+
+    df = pd.read_csv(file_path)
     df["Revenue"] = df["price"] * df["quantity"]
-    df["invoice_date"] = pd.to_datetime(df["invoice_date"], dayfirst=True, errors="coerce")
+
+    df["invoice_date"] = pd.to_datetime(
+        df["invoice_date"],
+        dayfirst=True,
+        errors="coerce"
+    )
+
     df = df.dropna(subset=["invoice_date"])
+
     df["Month"] = df["invoice_date"].dt.to_period("M").astype(str)
     df["Year"] = df["invoice_date"].dt.year
+
     return df
 
 df = load_data()
